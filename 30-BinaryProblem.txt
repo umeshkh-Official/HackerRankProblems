@@ -1,0 +1,45 @@
+//Given a base-10 integer, n, convert it to binary (base-2). Then find and print the base-10 integer denoting the maximum number of consecutive 1's in n's binary representation.
+
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int n = scanner.nextInt();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+        long m = n;
+    int maxCount = 0;
+    int count = 0;
+    long prev = -1;
+    while(m != 0) {
+
+        long current = m & 1;
+        if(current == 1 && current == prev) {
+            count++;
+        }else {
+            count = 1;
+        }
+        if(count > maxCount){
+            maxCount = count;
+        }
+        prev = current;
+        m = m >> 1;
+    }
+
+
+    System.out.println(maxCount);
+
+        scanner.close();
+    }
+}
